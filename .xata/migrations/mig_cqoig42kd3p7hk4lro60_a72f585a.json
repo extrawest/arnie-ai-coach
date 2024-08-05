@@ -1,0 +1,17 @@
+{
+  "id": "mig_cqoig42kd3p7hk4lro60",
+  "parentID": "mig_cqoig24ng83c29hkdsag",
+  "checksum": "1:a72f585a2d8477a99cc93e9dbfb166594d165ca5930e3ad0172bdd70e416b768",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "userId",
+          "type": "string",
+          "unique": true
+        },
+        "table": "userThread"
+      }
+    }
+  ]
+}

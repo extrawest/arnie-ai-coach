@@ -1,0 +1,12 @@
+{
+  "id": "mig_cqoig24ng83c29hkdsag",
+  "parentID": "mig_cqoifpkng83c29hkds90",
+  "checksum": "1:55cf4976d32c47cf5ada538889ce4716f23a8954a3ccb77598a4dcaa7c04e4bd",
+  "operations": [
+    {
+      "addTable": {
+        "table": "userThread"
+      }
+    }
+  ]
+}

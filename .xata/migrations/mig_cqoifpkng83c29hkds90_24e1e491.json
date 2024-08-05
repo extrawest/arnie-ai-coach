@@ -1,0 +1,17 @@
+{
+  "id": "mig_cqoifpkng83c29hkds90",
+  "parentID": "mig_cqoifjqkd3p7hk4lro50",
+  "checksum": "1:24e1e4910bc4c88b25e0673a1b4131862d1e0b20d8991c8a183077cddd9b4c4f",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "assistantId",
+          "type": "string",
+          "unique": true
+        },
+        "table": "assistant"
+      }
+    }
+  ]
+}
