@@ -50,7 +50,7 @@ const DatabaseClient = buildClient();
 
 const defaultOptions = {
   databaseURL:
-    "https://Kazu-s-workspace-dpbfr7.eu-central-1.xata.sh/db/goggins-ai-coach",
+    "https://Kazu-s-workspace-dpbfr7.eu-central-1.xata.sh/db/arnold-ai-coach",
 };
 
 export class XataClient extends DatabaseClient<DatabaseSchema> {

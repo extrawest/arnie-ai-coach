@@ -1,5 +1,5 @@
 {
-  "databaseURL": "https://Kazu-s-workspace-dpbfr7.eu-central-1.xata.sh/db/goggins-ai-coach",
+  "databaseURL": "https://Kazu-s-workspace-dpbfr7.eu-central-1.xata.sh/db/arnold-ai-coach",
   "codegen": {
     "output": "database/xata.ts"
   }

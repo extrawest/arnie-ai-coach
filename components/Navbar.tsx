@@ -20,7 +20,7 @@ export const Navbar = () => {
   return (
     <div className="p-4 flex flex-row justify-between items-center bg-black text-white">
       <Link href="/">
-        <h1 className="text-2xl font-bold">GogginsAI</h1>
+        <h1 className="text-2xl font-bold">Arnold Schwarzenegger AI Trainer</h1>
       </Link>
       <div className="flex gap-x-6 text-lg items-center">
         {routes.map((route) => (
