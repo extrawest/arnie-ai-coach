@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
-  const { message, threadId } = await req.json();
+  const { message, threadId, fromUser = false } = await req.json();
   if (!threadId || !message) {
     return NextResponse.json(
       {
@@ -19,7 +19,11 @@ export const POST = async (req: Request) => {
     const threadMessage = await openai.beta.threads.messages.create(threadId, {
       role: "user",
       content: message,
+      metadata: {
+        fromUser: `${fromUser}`,
+      },
     });
+
     console.log(threadMessage);
 
     return NextResponse.json(
@@ -39,5 +43,3 @@ export const POST = async (req: Request) => {
     );
   }
 };
-
-export default POST;

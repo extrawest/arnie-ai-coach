@@ -15,10 +15,9 @@ export const POST = async (req: Request) => {
 
   try {
     const openai = new OpenAI();
-    const messages = await openai.beta.threads.messages.list(threadId);
-    console.log(messages);
+    const response = await openai.beta.threads.messages.list(threadId);
 
-    return NextResponse.json({ messages, success: true }, { status: 200 });
+    return NextResponse.json({ messages: response.data, success: true }, { status: 200 });
   } catch (e) {
     console.error(e);
     return NextResponse.json(
@@ -32,5 +31,3 @@ export const POST = async (req: Request) => {
     );
   }
 };
-
-export default POST;

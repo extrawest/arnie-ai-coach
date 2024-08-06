@@ -7,5 +7,3 @@ export const POST = async () => {
 
   return NextResponse.json({ thread }, { status: 201 });
 };
-
-export default POST;

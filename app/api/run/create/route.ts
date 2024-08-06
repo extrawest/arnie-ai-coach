@@ -35,5 +35,3 @@ export const POST = async (req: Request) => {
     );
   }
 };
-
-export default POST;
