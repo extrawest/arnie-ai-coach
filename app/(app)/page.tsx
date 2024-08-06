@@ -197,7 +197,7 @@ const ChatPage = () => {
             className={`px-4 py-2 mb-3 rounded-lg w-fit text-lg ${["true", "True"].includes(
               (message.metadata as { fromUser?: string }).fromUser ?? ""
             )
-              ? "bg-yellow-500 ml-auto"
+              ? "bg-blue-500 ml-auto"
               : "bg-gray-700"
               }`}
           >
@@ -225,7 +225,7 @@ const ChatPage = () => {
               sending ||
               !message.trim()
             }
-            className="ml-4 bg-yellow-500 text-white px-4 py-2 rounded-full focus:outline-none disabled:bg-yellow-700"
+            className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-full focus:outline-none disabled:bg-blue-700"
             onClick={sendMessage}
           >
             {sending ? "Sending..." : pollingRun ? "Polling Run..." : "Send"}

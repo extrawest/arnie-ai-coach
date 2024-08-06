@@ -26,7 +26,7 @@ export const Navbar = () => {
         {routes.map((route) => (
           <Link
             className={
-              pathname === route.path ? "border-b-2 border-yellow-500" : ""
+              pathname === route.path ? "border-b-2 border-blue-500" : ""
             }
             key={`${route.name}__${route.path}`}
             href={route.path}

@@ -1,0 +1,12 @@
+{
+  "id": "mig_cqp3bqpcvn9be3f1i4og",
+  "parentID": "mig_cqovhhi9p1cvgh17vp20",
+  "checksum": "1:94a460f513f67ca4c7699f6560715289633c9e4512c853f74dd743c57acfd73e",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "userThread"
+      }
+    }
+  ]
+}

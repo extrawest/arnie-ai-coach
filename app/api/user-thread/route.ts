@@ -10,9 +10,9 @@ export const GET = async () => {
 
   if (!user) {
     return NextResponse.json(
-      { success: false, message: "unautorized" },
+      { success: false, message: "Unauthorized" },
       {
-        status: 403,
+        status: 401,
       }
     );
   }

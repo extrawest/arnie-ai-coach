@@ -12,18 +12,18 @@ const tables = [
     columns: [{ name: "assistantId", type: "string", unique: true }],
   },
   {
-    name: "userThread",
-    columns: [
-      { name: "userId", type: "string", unique: true },
-      { name: "threadId", type: "string", unique: true },
-    ],
-  },
-  {
     name: "challengePreferences",
     columns: [
       { name: "userId", type: "string", unique: true },
       { name: "challengeId", type: "string" },
       { name: "sendNotifications", type: "bool", defaultValue: "true" },
+    ],
+  },
+  {
+    name: "userThread",
+    columns: [
+      { name: "threadId", type: "string", notNull: true, defaultValue: " " },
+      { name: "userId", type: "string", notNull: true, defaultValue: " " },
     ],
   },
 ] as const;
@@ -34,16 +34,16 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Assistant = InferredTypes["assistant"];
 export type AssistantRecord = Assistant & XataRecord;
 
-export type UserThread = InferredTypes["userThread"];
-export type UserThreadRecord = UserThread & XataRecord;
-
 export type ChallengePreferences = InferredTypes["challengePreferences"];
 export type ChallengePreferencesRecord = ChallengePreferences & XataRecord;
 
+export type UserThread = InferredTypes["userThread"];
+export type UserThreadRecord = UserThread & XataRecord;
+
 export type DatabaseSchema = {
   assistant: AssistantRecord;
-  userThread: UserThreadRecord;
   challengePreferences: ChallengePreferencesRecord;
+  userThread: UserThreadRecord;
 };
 
 const DatabaseClient = buildClient();

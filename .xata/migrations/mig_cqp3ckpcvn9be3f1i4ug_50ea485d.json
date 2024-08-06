@@ -1,0 +1,18 @@
+{
+  "id": "mig_cqp3ckpcvn9be3f1i4ug",
+  "parentID": "mig_cqp3ci9cvn9be3f1i4tg",
+  "checksum": "1:50ea485df8b85b3918b4e13d36301f2abca63943e1fcb5d2a8e6e6dbca56c80d",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "userId",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": " "
+        },
+        "table": "userThread"
+      }
+    }
+  ]
+}
