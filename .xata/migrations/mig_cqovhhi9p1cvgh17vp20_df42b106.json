@@ -1,0 +1,17 @@
+{
+  "id": "mig_cqovhhi9p1cvgh17vp20",
+  "parentID": "mig_cqovh5q9p1cvgh17vp10",
+  "checksum": "1:df42b10624c33611850eab1b4d290b15924a760194db1f068948bc0a727b2d62",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "sendNotifications",
+          "type": "bool",
+          "defaultValue": "true"
+        },
+        "table": "challengePreferences"
+      }
+    }
+  ]
+}

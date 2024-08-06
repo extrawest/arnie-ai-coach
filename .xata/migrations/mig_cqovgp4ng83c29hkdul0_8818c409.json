@@ -1,0 +1,17 @@
+{
+  "id": "mig_cqovgp4ng83c29hkdul0",
+  "parentID": "mig_cqovgfq9p1cvgh17vp00",
+  "checksum": "1:8818c409ca1ba8a524b1bd83d800f28e366cf04cff1110ef3b6c1719ae425606",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "userId",
+          "type": "string",
+          "unique": true
+        },
+        "table": "challengePreferences"
+      }
+    }
+  ]
+}

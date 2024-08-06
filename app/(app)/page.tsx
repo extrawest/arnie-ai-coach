@@ -9,7 +9,9 @@ import { Message } from "openai/resources/beta/threads/messages";
 
 import { threadState, assistantState } from "@/atoms";
 
-const POLLING_FREQUENCY_MS = 4000;
+const POLLING_FREQUENCY_MS = 1000;
+
+
 
 const ChatPage = () => {
   const [message, setMessage] = useState("");
@@ -192,18 +194,17 @@ const ChatPage = () => {
         {messages.map((message) => (
           <div
             key={message.id}
-            className={`px-4 py-2 mb-3 rounded-lg w-fit text-lg ${
-              ["true", "True"].includes(
-                (message.metadata as { fromUser?: string }).fromUser ?? ""
-              )
-                ? "bg-yellow-500 ml-auto"
-                : "bg-gray-700"
-            }`}
+            className={`px-4 py-2 mb-3 rounded-lg w-fit text-lg ${["true", "True"].includes(
+              (message.metadata as { fromUser?: string }).fromUser ?? ""
+            )
+              ? "bg-yellow-500 ml-auto"
+              : "bg-gray-700"
+              }`}
           >
             {message.content[0]?.type === "text"
               ? message.content[0].text.value
-                  .split("\n")
-                  .map((text, index) => <p key={index}>{text}</p>)
+                .split("\n")
+                .map((text, index) => <p key={index}>{text}</p>)
               : null}
           </div>
         ))}

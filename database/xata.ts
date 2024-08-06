@@ -18,6 +18,14 @@ const tables = [
       { name: "threadId", type: "string", unique: true },
     ],
   },
+  {
+    name: "challengePreferences",
+    columns: [
+      { name: "userId", type: "string", unique: true },
+      { name: "challengeId", type: "string" },
+      { name: "sendNotifications", type: "bool", defaultValue: "true" },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -29,9 +37,13 @@ export type AssistantRecord = Assistant & XataRecord;
 export type UserThread = InferredTypes["userThread"];
 export type UserThreadRecord = UserThread & XataRecord;
 
+export type ChallengePreferences = InferredTypes["challengePreferences"];
+export type ChallengePreferencesRecord = ChallengePreferences & XataRecord;
+
 export type DatabaseSchema = {
   assistant: AssistantRecord;
   userThread: UserThreadRecord;
+  challengePreferences: ChallengePreferencesRecord;
 };
 
 const DatabaseClient = buildClient();

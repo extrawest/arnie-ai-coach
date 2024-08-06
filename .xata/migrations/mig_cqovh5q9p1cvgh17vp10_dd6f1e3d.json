@@ -1,0 +1,16 @@
+{
+  "id": "mig_cqovh5q9p1cvgh17vp10",
+  "parentID": "mig_cqovgp4ng83c29hkdul0",
+  "checksum": "1:dd6f1e3d479630a5fa9ea0d0d1f9f6d38985a3428c2c4848ca38b6e7046dab86",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "challengeId",
+          "type": "string"
+        },
+        "table": "challengePreferences"
+      }
+    }
+  ]
+}

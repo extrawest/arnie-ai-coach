@@ -1,0 +1,13 @@
+{
+  "id": "mig_cqovgfq9p1cvgh17vp00",
+  "parentID": "mig_cqovgdkng83c29hkduk0",
+  "checksum": "1:5f2259aae70e595e5d2faf9357799b5056ae708c40cfa0ac181a22b1db9bd142",
+  "operations": [
+    {
+      "renameTable": {
+        "newName": "challengePreferences",
+        "oldName": "ChallengePreferences"
+      }
+    }
+  ]
+}
