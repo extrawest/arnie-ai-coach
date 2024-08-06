@@ -19,7 +19,6 @@ export const POST = async (req: Request) => {
   try {
     const openai = new OpenAI();
     const run = await openai.beta.threads.runs.retrieve(threadId, runId);
-    console.log(run);
     return NextResponse.json({ run, success: true }, { status: 200 });
   } catch (e) {
     console.error(e);

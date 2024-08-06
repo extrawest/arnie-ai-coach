@@ -1,6 +1,7 @@
 "use client";
 
 import { RecoilRoot } from "recoil";
+import { Toaster } from "react-hot-toast";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
@@ -14,7 +15,10 @@ export default function RootLayout({
     <ClerkProvider afterSignOutUrl="/">
       <RecoilRoot>
         <html lang="en">
-          <body>{children}</body>
+          <body>
+            <Toaster />
+            {children}
+          </body>
         </html>
       </RecoilRoot>
     </ClerkProvider>

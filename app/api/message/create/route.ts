@@ -24,8 +24,6 @@ export const POST = async (req: Request) => {
       },
     });
 
-    console.log(threadMessage);
-
     return NextResponse.json(
       { message: threadMessage, success: true },
       { status: 201 }

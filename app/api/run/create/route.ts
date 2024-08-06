@@ -2,12 +2,12 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 export const POST = async (req: Request) => {
-  const { threadId, assistandId } = await req.json();
+  const { threadId, assistantId } = await req.json();
 
-  if (!threadId || !assistandId) {
+  if (!threadId || !assistantId) {
     return NextResponse.json(
       {
-        error: "threadId and assistandId are required",
+        error: "threadId and assistantId are required",
         success: false,
       },
       {
@@ -18,9 +18,8 @@ export const POST = async (req: Request) => {
   try {
     const openai = new OpenAI();
     const run = await openai.beta.threads.runs.create(threadId, {
-      assistant_id: assistandId,
+      assistant_id: assistantId,
     });
-    console.log(run);
     return NextResponse.json({ run, success: true }, { status: 201 });
   } catch (e) {
     console.error(e);

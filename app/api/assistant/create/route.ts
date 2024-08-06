@@ -34,7 +34,6 @@ export const POST = async () => {
         The assistant should be supportive but also challenging, reflecting Goggins' philosophy of continuous self-improvement and resilience.
       `,
     });
-    console.log(assistant);
     return NextResponse.json({ assistant }, { status: 201 });
   } catch (e) {
     return NextResponse.json({ error: e }, { status: 500 });
