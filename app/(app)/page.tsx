@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { FormEventHandler, useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRecoilState } from "recoil";
@@ -11,7 +11,13 @@ import { threadState, assistantState } from "@/atoms";
 
 const POLLING_FREQUENCY_MS = 1000;
 
-
+const usePrevious = <T extends any>(value: T): T | undefined => {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+};
 
 const ChatPage = () => {
   const [message, setMessage] = useState("");
@@ -20,7 +26,10 @@ const ChatPage = () => {
   const [userThread] = useRecoilState(threadState);
   const [assistant] = useRecoilState(assistantState);
   const [pollingRun, setPollingRun] = useState(false);
+  const scrollableDivRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<Array<Message>>([]);
+
+  const prevMessages = usePrevious(messages);
 
   const startRun = async (
     threadId: string,
@@ -50,9 +59,17 @@ const ChatPage = () => {
     }
   };
 
+  const scrollToBottom = () => {
+    if (scrollableDivRef.current) {
+      scrollableDivRef.current.scrollTo({
+        top: scrollableDivRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const pollRunStatus = async (threadId: string, runId: string) => {
     setPollingRun(true);
-
     const intervalId = setInterval(async () => {
       try {
         const {
@@ -76,6 +93,7 @@ const ChatPage = () => {
           clearInterval(intervalId);
           setPollingRun(false);
           fetchMessages();
+          scrollToBottom();
           return;
         } else if (run.status === "failed") {
           clearInterval(intervalId);
@@ -95,7 +113,8 @@ const ChatPage = () => {
     return () => clearInterval(intervalId);
   };
 
-  const sendMessage = async () => {
+  const sendMessage: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
     try {
       if (!userThread || sending || !assistant) {
         toast.error("Failed to send message, invalid state");
@@ -135,8 +154,15 @@ const ChatPage = () => {
       toast.error("Something went wrong");
     } finally {
       setSending(false);
+      scrollToBottom();
     }
   };
+
+  useEffect(() => {
+    if (messages.length && !prevMessages?.length) {
+      scrollToBottom();
+    }
+  }, [messages, prevMessages])
 
   const fetchMessages = useCallback(async () => {
     if (!userThread) return;
@@ -164,7 +190,6 @@ const ChatPage = () => {
             message.content[0]?.type === "text" &&
             message.content[0].text.value.trim() !== ""
         );
-
       if (newMessages) {
         setMessages(newMessages);
       }
@@ -184,7 +209,7 @@ const ChatPage = () => {
 
   return (
     <div className="w-screen h-[calc(100vh-64px)] flex flex-col bg-black text-white">
-      <div className="flex-grow overflow-y-scroll p-8 space-y-2">
+      <div className="flex-grow overflow-y-scroll p-8 space-y-2" ref={scrollableDivRef}>
         {fetching && messages.length === 0 && (
           <div className="text-center font-bold">Fetching...</div>
         )}
@@ -210,27 +235,31 @@ const ChatPage = () => {
         ))}
       </div>
       <div className="mt-auto p-4 bg-gray-800">
-        <div className="flex items-center bg-white p-2">
-          <input
-            type="text"
-            value={message}
-            placeholder="Type a message"
-            onChange={(e) => setMessage(e.target.value)}
-            className="flex-grow bg-transparent text-black focus:outline-none"
-          />
-          <button
-            disabled={
-              !userThread?.threadId?.toString() ||
-              !assistant ||
-              sending ||
-              !message.trim()
-            }
-            className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-full focus:outline-none disabled:bg-blue-700"
-            onClick={sendMessage}
-          >
-            {sending ? "Sending..." : pollingRun ? "Polling Run..." : "Send"}
-          </button>
-        </div>
+        <form
+          onSubmit={sendMessage}
+        >
+          <div className="flex items-center bg-white p-2">
+            <input
+              type="text"
+              value={message}
+              placeholder="Type a message"
+              onChange={(e) => setMessage(e.target.value)}
+              className="flex-grow bg-transparent text-black focus:outline-none"
+            />
+            <button
+              type="submit"
+              disabled={
+                !userThread?.threadId?.toString() ||
+                !assistant ||
+                sending ||
+                !message.trim()
+              }
+              className="ml-4 bg-blue-500 text-white px-4 py-2 rounded-full focus:outline-none disabled:bg-blue-700"
+            >
+              {sending ? "Sending..." : pollingRun ? "Polling Run..." : "Send"}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
