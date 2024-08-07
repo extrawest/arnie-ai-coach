@@ -6,7 +6,11 @@
 ![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)
 ![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue)
 
+![](https://raw.githubusercontent.com/extrawest/arnie-ai-coach/main/preview.gif)
+
 Arinie AI Coach is a fun and interactive fitness coaching application that speaks to users in Arnold Schwarzenegger's style, with many references to the Terminator. This unique approach makes achieving your fitness goals an entertaining experience.
+
+Live Pveview link: https://arnold-ai-coach.vercel.app/
 
 ## Table of Contents
 
