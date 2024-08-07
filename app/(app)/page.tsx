@@ -68,6 +68,10 @@ const ChatPage = () => {
     }
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages.length])
+
   const pollRunStatus = async (threadId: string, runId: string) => {
     setPollingRun(true);
     const intervalId = setInterval(async () => {
